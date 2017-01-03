@@ -1,0 +1,36 @@
+body {
+  background-color:black;
+  color:white;
+}
+
+img {
+  margin:auto;
+  width:500px;
+  height:500px;
+}
+
+h1{font-family: 'Orbitron', sans-serif;}
+
+.jumbotron{
+  padding: 100px 25px 0px;
+  background-color:inherit;
+
+}
+
+.center{
+  width:50%;
+  margin:auto;
+}
+
+.bg-footer{
+    padding:10px;
+    margin-top:50px;
+    color:black;
+    background-color: #f8f8f8
+}
+
+.icons{
+  font-size:25px;
+  padding:10px;
+  color:black;
+}

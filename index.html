@@ -13,44 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <style>
-      body {
-        background-color:black;
-        color:white;
-      }
-      .jumbotron{
-        padding: 100px 25px 0px;
-        background-color:inherit;
+    <link rel="stylesheet" href="css/styles.css">
 
-      }
-
-      .center{
-        width:50%;
-        margin:auto;
-      }
-
-      img {
-        margin:auto;
-        width:500px;
-        height:500px;
-      }
-
-      .bg-footer{
-          padding:10px;
-          margin-top:50px;
-          color:black;
-          background-color: #f8f8f8
-      }
-
-      .icons{
-        font-size:25px;
-        padding:10px;
-        color:black;
-      }
-
-      h1{font-family: 'Orbitron', sans-serif;}
-
-    </style>
 
 
   </head>
@@ -68,12 +32,6 @@
             </button>
             <a class="navbar-brand" href="#home">PHASES OF THE MOON</a>
           </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">VIEW MOON</a></li>
-          <li><a href="#">ABOUT PHASES</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
 
@@ -155,79 +113,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Enables Bootstrap tooltips -->
-    <script>
-      $(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});
-    </script>
-
-    <!-- Retrieves the moon image and calculates respective phase statistics -->
-    <script>
-      function calcPhase(){
-        var moon= document.getElementById("moon");
-        var stats= document.getElementById("stats");
-        var date= (months.indexOf(monthSelect.value)+1) + "/" + daySelect.value + "/" + yearSelect.value;
-        var time= hourSelect.value + ":" + minuteSelect.value;
-        var imgUrl = "http://api.usno.navy.mil/imagery/moon.png?date=" + date + "&time=" + time;
-        var statURL= "http://api.usno.navy.mil/rstt/oneday?date=" + date + "&loc=" + locationSelect.value;
-
-        console.log(statURL);
-        console.log(imgUrl);
-        moon.src=imgUrl;
-        $.getJSON(statURL, function(data) {
-
-            var curphase= data["curphase"];
-            var fracillum= data["fracillum"];
-            var moonrise= data["moondata"][0]["time"];
-            var moonset= data["moondata"][2]["time"];
-            var closestPhase= data["closestphase"]["phase"];
-            var closestPhaseDate= data["closestphase"]["date"];
-            var statText;
-
-            statText= "On " + date +  " at " +  locationSelect.value + " ,the moon is in the " + "<b>"+ curphase  + "</b>" + " phase";
-            statText+= " and is " + "<b>" + fracillum + "</b>" + " full.";
-            statText+="<br /> The closest phase is the " + closestPhase + " phase, which occurs on " + closestPhaseDate;
-            statText+="<br /> Moonrise: " + moonrise + ". Moonset: " + moonset;
-            stats.class="";
-            stats.innerHTML= statText;
-
-
-        });
-      }
-    </script>
-
-    <!-- Initializes options for dropdowns an calculates phase for current day -->
-    <script>
-      var daySelect= document.getElementById("day");
-      var hourSelect= document.getElementById("hour");
-      var minuteSelect= document.getElementById("minute");
-      var monthSelect= document.getElementById("month");
-      var yearSelect= document.getElementById("year");
-      var locationSelect= document.getElementById("location");
-
-
-      var months= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      var today= new Date();
-      var hourText = minuteText = dayText = monthText= "";
-
-      for (var i=0; i<months.length; i++){monthText+="<option>" + months[i] + "</option>";}
-      for (var i=1; i<32; i++){dayText+="<option>" + i + "</option>";}
-      for (var i=0; i<24; i++){hourText+="<option>" + i + "</option>";}
-      for (var i=0; i<60; i++){minuteText+="<option>" + i + "</option>";}
-
-
-      daySelect.innerHTML=dayText;
-      hourSelect.innerHTML=hourText;
-      minuteSelect.innerHTML=minuteText;
-      monthSelect.innerHTML=monthText;
-
-      monthSelect.value= months[today.getMonth()];
-      daySelect.value= today.getDate();
-      hourSelect.value= today.getHours();
-      minuteSelect.value= today.getMinutes();
-      yearSelect.value= today.getFullYear();
-      locationSelect.value= "Washington, DC";
-
-      calcPhase();
-    </script>
+    <script src="js/tooltips.js"></script>
+    <script src="js/calcPhase.js"></script>
+    <script src="js/init_inputs.js"></script>
 
 
 
