@@ -7,3 +7,4 @@ This application uses the [Astronomical Applications department API](http://aa.u
 
 Simply clone this repository and open the index.html file in a web browser. 
 
+Created by Atharva Bhat
